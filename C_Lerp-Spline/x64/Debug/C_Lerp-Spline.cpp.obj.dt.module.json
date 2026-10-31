@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C_Lerp-Spline\\x64\\Debug\\C_Lerp-Spline.obj",
+            "outputs": [
+                "C_Lerp-Spline\\x64\\Debug\\C_Lerp-Spline.cpp.obj.dt.module.json",
+                "C_Lerp-Spline\\x64\\Debug\\C_Lerp-Spline.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
