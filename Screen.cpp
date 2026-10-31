@@ -45,14 +45,20 @@ using namespace std;
     bool Screen::isInScreen(int x, int y) const { return x >= 0 && x < playgroundSizeX && y >= 0 && y < playgroundSizeY; }
         
     void Screen::setBottomDescription(const string& description) { bottomDescription = description; }
-        
-    void Screen::printScreen () const
+
+void Screen::setTopDescription(const string& description)
+{
+        topDescription = description;
+}
+
+void Screen::printScreen () const
     {
+        cout << '\n' << topDescription << '\n' ;
         for (int i = 0; i < screen.size(); i++) {
             for (int j = 0; j < screen[i].size(); j++) {
                 cout << screen[i][j];
             }
             cout << '\n';
         }
-        cout << '\n' << bottomDescription << '\n';
+        cout << bottomDescription << '\n';
     };

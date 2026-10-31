@@ -13,12 +13,32 @@ void SegmentManager::init()
         segments.push_back(Point2D(0,0));
     }
     
-    activeSegment = 0;
+    activeSegment = segments.size() - 1;
 }
 
 void SegmentManager::addSegment(const Point2D& s)
 {
     segments.push_back(s);
+    activeSegment = segments.size() - 1;
+}
+void SegmentManager::addSegment()
+{
+    Point2D last = segments[segments.size() - 1];
+    segments.push_back(last);
+    activeSegment = segments.size() - 1;
+}
+
+void SegmentManager::removeActiveSegment()
+{
+    segments.erase(segments.begin() + activeSegment);
+    if (activeSegment >= segments.size())
+    {
+        activeSegment = segments.size() - 1;
+    }
+    else if (activeSegment < 0)
+    {
+        activeSegment = 0;
+    }
 }
 
 void SegmentManager::setActiveSegment(int index)

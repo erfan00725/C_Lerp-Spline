@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C_Lerp-Spline\\x64\\Debug\\structs.h.obj",
+            "outputs": [
+                "E:\\programming\\C_Lerp-Spline\\C_Lerp-Spline\\x64\\Debug\\vc145.pdb",
+                "C_Lerp-Spline\\x64\\Debug\\",
+                "E:\\programming\\C_Lerp-Spline\\C_Lerp-Spline\\x64\\Debug\\structs.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "structs.h",
+                    "source-path": "e:\\programming\\c_lerp-spline\\structs.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

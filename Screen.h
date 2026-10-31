@@ -13,7 +13,8 @@ class Screen
         
     vector<vector<char>> screen;
         
-    string bottomDescription = "";
+    string bottomDescription;
+    string topDescription;
     
 public:
     Screen(int x, int y);
@@ -28,6 +29,7 @@ public:
     int getScreenSizeY() const;
     bool isInScreen(int x, int y) const;
     void setBottomDescription(const string& description);
+    void setTopDescription(const string& description);
     void printScreen() const;
     
 };

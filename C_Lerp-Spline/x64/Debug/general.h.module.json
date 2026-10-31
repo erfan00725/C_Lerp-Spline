@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C_Lerp-Spline\\x64\\Debug\\general.h.obj",
+            "outputs": [
+                "E:\\programming\\C_Lerp-Spline\\C_Lerp-Spline\\x64\\Debug\\vc145.pdb",
+                "C_Lerp-Spline\\x64\\Debug\\",
+                "E:\\programming\\C_Lerp-Spline\\C_Lerp-Spline\\x64\\Debug\\general.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "general.h",
+                    "source-path": "e:\\programming\\c_lerp-spline\\general.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}
