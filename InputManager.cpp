@@ -2,8 +2,6 @@
 
 void InputManager::updateOnInput()
 {
-    updateKey();
-    
     switch (key)
     {
     case 'w':
@@ -36,8 +34,6 @@ void InputManager::updateOnInput()
 
 bool InputManager::isExit()
 {
-    updateKey();
-    
     if (key == 27 || key == 'p') return true;
     
     return false;

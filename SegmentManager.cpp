@@ -88,6 +88,11 @@ int SegmentManager::getActiveSegmentIndex() { return activeSegment; }
 
 Point2D SegmentManager::getActiveSegment() { return segments[activeSegment]; }
 
+int SegmentManager::getSegmentsCount()
+{
+    return segments.size();
+}
+
 void SegmentManager::setActiveSegment(int x, int y) { segments[activeSegment] = Point2D(x, y); }
 
 void SegmentManager::moveActiveSegment(int x, int y)

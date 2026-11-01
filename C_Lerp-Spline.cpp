@@ -28,9 +28,9 @@ int main()
     
     while (true)
     {
-        if (_kbhit())
+        if (im.updateKey())
         {
-            if (im.updateKey()) break;
+            if (im.isExit()) break;
             
             im.updateOnInput();
             
@@ -39,7 +39,7 @@ int main()
 
             sm.updateSegmentsOnScreen();
             
-            string bottomDescription = "active segment: " + to_string(sm.getActiveSegment().xPos) + ", " + to_string(sm.getActiveSegment().yPos) + "\nscreen size: " + to_string(screen.getScreenSizeX()) + " , " + to_string(screen.getScreenSizeY());
+            string bottomDescription = "active segment: " + to_string(sm.getActiveSegment().xPos) + ", " + to_string(sm.getActiveSegment().yPos) + "    |   total segments: " + to_string(sm.getSegmentsCount()) + "    |   screen size: " + to_string(screen.getScreenSizeX()) + " , " + to_string(screen.getScreenSizeY());
             screen.setBottomDescription(bottomDescription);
             
             screen.printScreen();

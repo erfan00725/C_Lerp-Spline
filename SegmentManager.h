@@ -25,6 +25,7 @@ public:
     std::vector<Point2D> getSegments();
     int getActiveSegmentIndex();
     Point2D getActiveSegment();
+    int getSegmentsCount();
     void setActiveSegment(int x, int y);
     void moveActiveSegment(int x, int y);
     void activenextSegment();
