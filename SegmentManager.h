@@ -20,6 +20,7 @@ public:
     void addSegment(const Point2D& s);
     void addSegment();
     void removeActiveSegment();
+    void updateSegmentsOnScreen();
     void setActiveSegment(int index);
     std::vector<Point2D> getSegments();
     int getActiveSegmentIndex();

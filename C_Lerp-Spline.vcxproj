@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="C_Lerp-Spline.cpp" />
     <ClCompile Include="general.h" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="SegmentManager.cpp" />
     <ClCompile Include="structs.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="SegmentManager.h" />
   </ItemGroup>

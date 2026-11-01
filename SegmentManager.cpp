@@ -46,6 +46,42 @@ void SegmentManager::setActiveSegment(int index)
     activeSegment = index;
 }
 
+
+void SegmentManager::updateSegmentsOnScreen()
+{
+    if (getSegments().size() >= 2)
+    {
+        for (int k = 0; k < getSegments().size() - 1; ++k)
+        {
+            Point2D startPos = getSegments()[k];
+            Point2D endPos = getSegments()[k + 1];
+                    
+            int dx = abs(endPos.xPos - startPos.xPos);
+            int dy = abs(endPos.yPos - startPos.yPos);
+            int  steps = max(max(dx, dy), 1);
+    
+            for (int i = 0; i < steps; ++i)
+            {
+                const float t = static_cast<float>(i) / static_cast<float>(steps);
+                Point2D p = Point2D::lerp(startPos, endPos, t);
+                screen->setPoint(p, '*');
+            }
+        }
+                
+        Point2D p = getActiveSegment();
+        screen->setPoint(p, '#');
+                
+    } else
+    {
+        if (!getSegments().empty())
+        {
+            Point2D p = getSegments()[0];
+            screen->setPoint(p, '#');
+        }
+                
+    }
+}
+
 std::vector<Point2D> SegmentManager::getSegments() { return segments; }
 
 int SegmentManager::getActiveSegmentIndex() { return activeSegment; }
