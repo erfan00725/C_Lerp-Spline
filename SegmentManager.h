@@ -7,14 +7,17 @@ class Screen;
 
 class SegmentManager
 {
-    std::vector<Point2D> segments;
+    vector<Point2D> segments;
     int activeSegment = -1; 
+    
+    Point2D bCurveWeight = Point2D(0,0);
+    bool isCurveActiveSegment = false;
     
     Screen* screen;
 
 public:
     SegmentManager(Screen* screen);
-    SegmentManager(Screen* screen, std::vector<Point2D> s);
+    SegmentManager(Screen* screen, vector<Point2D> s);
     
     void init();
     void addSegment(const Point2D& s);
@@ -22,7 +25,7 @@ public:
     void removeActiveSegment();
     void updateSegmentsOnScreen();
     void setActiveSegment(int index);
-    std::vector<Point2D> getSegments();
+    vector<Point2D> getSegments();
     int getActiveSegmentIndex();
     Point2D getActiveSegment();
     int getSegmentsCount();
@@ -31,4 +34,11 @@ public:
     void activenextSegment();
     void activePrevSegment();
     void reset();
+    
+    Point2D MovePoint(int x, int y,const Point2D& originalPoint ) const;
+    
+    bool getIsCurveActiveSegment() const {return isCurveActiveSegment;}
+    
+    void curveActiveSegment();
+    void moveCurveWeightPosition(int x, int y);
 };

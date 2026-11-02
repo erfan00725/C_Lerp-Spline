@@ -23,6 +23,14 @@ struct Point2D {
             
         return temp;
     }
+    
+    static Point2D bezierCurve(Point2D start, Point2D end, Point2D controlPoint, float t)
+    {
+        Point2D temp;
+        temp.xPos = round(floatBezierCurve(start.xPos, end.xPos, controlPoint.xPos, t));
+        temp.yPos = round(floatBezierCurve(start.yPos, end.yPos, controlPoint.yPos, t));
+        return temp;
+    }
         
     bool operator==(const Point2D& other) const {
         return xPos == other.xPos && yPos == other.yPos;

@@ -63,7 +63,14 @@ void SegmentManager::updateSegmentsOnScreen()
             for (int i = 0; i < steps; ++i)
             {
                 const float t = static_cast<float>(i) / static_cast<float>(steps);
-                Point2D p = Point2D::lerp(startPos, endPos, t);
+                Point2D p;
+                if (isCurveActiveSegment && k == activeSegment)
+                {
+                    p = Point2D::bezierCurve(startPos, endPos, bCurveWeight, t);
+                }else
+                {
+                    p = Point2D::lerp(startPos, endPos, t);
+                }
                 screen->setPoint(p, '*');
             }
         }
@@ -97,12 +104,7 @@ void SegmentManager::setActiveSegment(int x, int y) { segments[activeSegment] = 
 
 void SegmentManager::moveActiveSegment(int x, int y)
 {
-    Point2D p = segments[activeSegment];
-    
-    if (screen->isInScreen(p.xPos + x, p.yPos)) p.xPos += x;
-    if (screen->isInScreen(p.xPos, p.yPos + y)) p.yPos += y;
-    
-    segments[activeSegment] = p;
+    segments[activeSegment] = MovePoint(x,y, segments[activeSegment]);
 }
 
 void SegmentManager::activenextSegment() { activeSegment = (activeSegment + 1) % segments.size(); }
@@ -110,3 +112,25 @@ void SegmentManager::activenextSegment() { activeSegment = (activeSegment + 1) %
 void SegmentManager::activePrevSegment() { activeSegment = (activeSegment - 1 + segments.size()) % segments.size(); }
 
 void SegmentManager::reset() { segments.clear(); activeSegment = -1; }
+
+Point2D SegmentManager::MovePoint(int x, int y, const Point2D& originalPoint) const
+{
+    Point2D p = originalPoint;
+    
+    if (screen->isInScreen(p.xPos + x, p.yPos)) p.xPos += x;
+    if (screen->isInScreen(p.xPos, p.yPos + y)) p.yPos += y;
+    
+    return p;
+}
+
+void SegmentManager::curveActiveSegment()
+{
+    isCurveActiveSegment = !isCurveActiveSegment;
+    
+    bCurveWeight = getActiveSegment();
+}
+
+void SegmentManager::moveCurveWeightPosition(int x, int y)
+{
+    bCurveWeight = MovePoint(x,y, bCurveWeight);
+}

@@ -5,16 +5,40 @@ void InputManager::updateOnInput()
     switch (key)
     {
     case 'w':
-        sm->moveActiveSegment(0, -1);
+        if (sm->getIsCurveActiveSegment())
+        {
+            sm->moveCurveWeightPosition(0, -1);
+        }else
+        {
+            sm->moveActiveSegment(0, -1);
+        }
         break;
     case 's':
-        sm->moveActiveSegment(0, 1);
+        if (sm->getIsCurveActiveSegment())
+        {
+            sm->moveCurveWeightPosition(0, 1);
+        }else
+        {
+            sm->moveActiveSegment(0, 1);
+        }
         break;
     case 'a':
-        sm->moveActiveSegment(-1, 0);
+        if (sm->getIsCurveActiveSegment())
+        {
+            sm->moveCurveWeightPosition(-1, 0);
+        }else
+        {
+            sm->moveActiveSegment(-1, 0);
+        }
         break;
     case 'd':
-        sm->moveActiveSegment(1, 0);
+        if (sm->getIsCurveActiveSegment())
+        {
+            sm->moveCurveWeightPosition(1, 0);
+        }else
+        {
+            sm->moveActiveSegment(1, 0);
+        }
         break;
     case 'q':
         sm->activePrevSegment();
@@ -27,6 +51,9 @@ void InputManager::updateOnInput()
         break;
     case 'x':
         sm->removeActiveSegment();
+        break;
+    case 'f':
+        sm->curveActiveSegment();
         break;
     default: ;
     }
