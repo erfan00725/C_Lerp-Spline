@@ -31,6 +31,14 @@ struct Point2D {
         temp.yPos = round(floatBezierCurve(start.yPos, end.yPos, controlPoint.yPos, t));
         return temp;
     }
+    
+    static Point2D catmullRom(Point2D p0, Point2D p1, Point2D p2, Point2D p3, float t)
+    {
+        Point2D temp;
+        temp.xPos = round(floatCatmullRom(p0.xPos, p1.xPos, p2.xPos, p3.xPos, t));
+        temp.yPos = round(floatCatmullRom(p0.yPos, p1.yPos, p2.yPos, p3.yPos, t));
+        return temp;
+    }
         
     bool operator==(const Point2D& other) const {
         return xPos == other.xPos && yPos == other.yPos;

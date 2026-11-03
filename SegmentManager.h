@@ -7,11 +7,24 @@ class Screen;
 
 class SegmentManager
 {
+public:
+    
+    enum RenderState
+    {
+        lerp = 0,
+        bezier = 1,
+        catmull_rom = 2
+    };
+    
+private:
     vector<Point2D> segments;
     int activeSegment = -1; 
     
     Point2D bCurveWeight = Point2D(0,0);
-    bool isCurveActiveSegment = false;
+    
+    RenderState state = lerp;
+    
+    
     
     Screen* screen;
 
@@ -37,8 +50,8 @@ public:
     
     Point2D MovePoint(int x, int y,const Point2D& originalPoint ) const;
     
-    bool getIsCurveActiveSegment() const {return isCurveActiveSegment;}
+    bool getRenderState() const {return state;}
     
-    void curveActiveSegment();
+    void setRenderState(RenderState s);
     void moveCurveWeightPosition(int x, int y);
 };

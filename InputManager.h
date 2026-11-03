@@ -11,8 +11,8 @@ class InputManager
 public:
     InputManager(SegmentManager* sm): sm(sm) {}
     
-    void updateOnInput();
-    bool isExit();
+    void updateOnInput() const;
+    bool isExit() const;
     
     int updateKey()
     {   

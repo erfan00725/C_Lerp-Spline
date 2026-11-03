@@ -18,7 +18,7 @@ int main()
     
     Screen screen(playgroundSize, playgroundSize / 2);
     
-    string topDescription = "Move with WASD | add with C | remove with X | switch with QE | exit with P";
+    string topDescription = "Move with WASD | add with C | remove with X | switch with QE   | bezier with F | catmull rom with R | exit with P";
     screen.setTopDescription(topDescription);
 
     SegmentManager sm(&screen ,{startPos,endPos});
@@ -39,7 +39,7 @@ int main()
 
             sm.updateSegmentsOnScreen();
             
-            string bottomDescription = "active segment: " + to_string(sm.getActiveSegment().xPos) + ", " + to_string(sm.getActiveSegment().yPos) + "    |   total segments: " + to_string(sm.getSegmentsCount()) + "    |   screen size: " + to_string(screen.getScreenSizeX()) + " , " + to_string(screen.getScreenSizeY());
+            string bottomDescription = "active segment: " + to_string(sm.getActiveSegment().xPos) + ", " + to_string(sm.getActiveSegment().yPos) + "    |   total segments: " + to_string(sm.getSegmentsCount()) + "    |   renderState: " + to_string(sm.getRenderState()) + "    |   screen size: " + to_string(screen.getScreenSizeX()) + " , " + to_string(screen.getScreenSizeY());
             screen.setBottomDescription(bottomDescription);
             
             screen.printScreen();

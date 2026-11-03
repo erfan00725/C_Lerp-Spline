@@ -1,11 +1,11 @@
 ﻿#include "InputManager.h"
 
-void InputManager::updateOnInput()
+void InputManager::updateOnInput() const
 {
     switch (key)
     {
     case 'w':
-        if (sm->getIsCurveActiveSegment())
+        if (sm->getRenderState() == SegmentManager::bezier)
         {
             sm->moveCurveWeightPosition(0, -1);
         }else
@@ -14,7 +14,7 @@ void InputManager::updateOnInput()
         }
         break;
     case 's':
-        if (sm->getIsCurveActiveSegment())
+        if (sm->getRenderState() == SegmentManager::bezier)
         {
             sm->moveCurveWeightPosition(0, 1);
         }else
@@ -23,7 +23,7 @@ void InputManager::updateOnInput()
         }
         break;
     case 'a':
-        if (sm->getIsCurveActiveSegment())
+        if (sm->getRenderState() == SegmentManager::bezier)
         {
             sm->moveCurveWeightPosition(-1, 0);
         }else
@@ -32,7 +32,7 @@ void InputManager::updateOnInput()
         }
         break;
     case 'd':
-        if (sm->getIsCurveActiveSegment())
+        if (sm->getRenderState() == SegmentManager::bezier)
         {
             sm->moveCurveWeightPosition(1, 0);
         }else
@@ -53,13 +53,16 @@ void InputManager::updateOnInput()
         sm->removeActiveSegment();
         break;
     case 'f':
-        sm->curveActiveSegment();
+        sm->setRenderState(SegmentManager::bezier);
+        break;
+    case 'r':
+        sm->setRenderState(SegmentManager::catmull_rom);
         break;
     default: ;
     }
 }
 
-bool InputManager::isExit()
+bool InputManager::isExit() const
 {
     if (key == 27 || key == 'p') return true;
     

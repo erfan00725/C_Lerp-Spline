@@ -53,23 +53,31 @@ void SegmentManager::updateSegmentsOnScreen()
     {
         for (int k = 0; k < getSegments().size() - 1; ++k)
         {
-            Point2D startPos = getSegments()[k];
-            Point2D endPos = getSegments()[k + 1];
+            Point2D p1 = getSegments()[k];
+            Point2D p2 = getSegments()[k + 1];
+            
+            float p0i = max(0, k-1);
+            Point2D p0 = getSegments()[p0i];
+            float p3i = min(static_cast<int>(getSegments().size()), k+1);
+            Point2D p3 = getSegments()[p3i];
                     
-            int dx = abs(endPos.xPos - startPos.xPos);
-            int dy = abs(endPos.yPos - startPos.yPos);
+            int dx = abs(p2.xPos - p1.xPos);
+            int dy = abs(p2.yPos - p1.yPos);
             int  steps = max(max(dx, dy), 1);
     
             for (int i = 0; i < steps; ++i)
             {
                 const float t = static_cast<float>(i) / static_cast<float>(steps);
                 Point2D p;
-                if (isCurveActiveSegment && k == activeSegment)
+                if (state == bezier && k == activeSegment)
                 {
-                    p = Point2D::bezierCurve(startPos, endPos, bCurveWeight, t);
+                    p = Point2D::bezierCurve(p1, p2, bCurveWeight, t);
+                }else if (state == catmull_rom)
+                {
+                    p = Point2D::catmullRom(p0, p1, p2, p3, t);
                 }else
                 {
-                    p = Point2D::lerp(startPos, endPos, t);
+                    p = Point2D::lerp(p1, p2, t);
                 }
                 screen->setPoint(p, '*');
             }
@@ -123,11 +131,20 @@ Point2D SegmentManager::MovePoint(int x, int y, const Point2D& originalPoint) co
     return p;
 }
 
-void SegmentManager::curveActiveSegment()
+void SegmentManager::setRenderState(RenderState s)
 {
-    isCurveActiveSegment = !isCurveActiveSegment;
+    if (state == s)
+    {
+        state = lerp;
+        return;
+    }
     
-    bCurveWeight = getActiveSegment();
+    state = s;
+
+    if (state == bezier)
+    {
+        bCurveWeight = getActiveSegment();
+    }
 }
 
 void SegmentManager::moveCurveWeightPosition(int x, int y)
