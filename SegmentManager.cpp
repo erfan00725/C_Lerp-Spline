@@ -56,9 +56,9 @@ void SegmentManager::updateSegmentsOnScreen()
             Point2D p1 = getSegments()[k];
             Point2D p2 = getSegments()[k + 1];
             
-            float p0i = max(0, k-1);
+            int p0i = max(0, k-1);
             Point2D p0 = getSegments()[p0i];
-            float p3i = min(static_cast<int>(getSegments().size()), k+1);
+            int p3i = min(static_cast<int>(getSegments().size() - 1), k+2);
             Point2D p3 = getSegments()[p3i];
                     
             int dx = abs(p2.xPos - p1.xPos);

@@ -50,7 +50,7 @@ public:
     
     Point2D MovePoint(int x, int y,const Point2D& originalPoint ) const;
     
-    bool getRenderState() const {return state;}
+    RenderState getRenderState() const {return state;}
     
     void setRenderState(RenderState s);
     void moveCurveWeightPosition(int x, int y);
